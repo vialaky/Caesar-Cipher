@@ -37,14 +37,46 @@ def set_shift():
     while not shift.isdigit():
         print('Enter correct value:')
         shift = input()
-    return shift
+    return int(shift)
+
+
+def convert(symbol, direction, language, shift):
+
+    if language == 'e':
+        alpha = english_letters
+    else:
+        alpha = russian_letters
+
+    if symbol.lower() in alpha:
+        if symbol == symbol.upper():
+            upper_case = 1
+        else:
+            upper_case = 0
+
+        if direction == 1:
+            x = alpha.index(symbol.lower())
+            y = (x + shift) % (len(alpha))
+            if upper_case == 0:
+                return alpha[y]
+            else:
+                return  alpha[y].upper()
+
+    else:
+        return symbol
 
 
 # Setting up the program
-print(encryption_or_decryption())
-print(english_or_russian())
-print(set_shift())
+direct = encryption_or_decryption()
+lang = english_or_russian()
+sh = set_shift()
 
 # Start the program
-print('Enter the text')
-input_text = input()
+print('Enter the text:')
+in_text = input()
+# in_text = 'Умом Россию не понять'
+out_text = ''
+for sym in in_text:
+    out_text += convert(sym, direct, lang, sh)
+print(out_text)
+
+
