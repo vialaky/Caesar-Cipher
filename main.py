@@ -1,3 +1,7 @@
+english_letters = 'abcdefghijklmnopqrstuvwxyz'
+russian_letters = 'абвгдежзийклмнопрстуфхцчшщъыьэюя'
+
+
 def encryption_or_decryption():
     print('Select the direction:\n'
           '1 - encryption\n'
@@ -27,6 +31,20 @@ def english_or_russian():
             language = input()
 
 
+def set_shift():
+    print('Set the shift:')
+    shift = input()
+    while not shift.isdigit():
+        print('Enter correct value:')
+        shift = input()
+    return shift
+
+
 # Setting up the program
 print(encryption_or_decryption())
 print(english_or_russian())
+print(set_shift())
+
+# Start the program
+print('Enter the text')
+input_text = input()
