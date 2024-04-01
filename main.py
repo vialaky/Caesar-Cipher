@@ -41,7 +41,6 @@ def set_shift():
 
 
 def convert(symbol, direction, language, shift):
-
     if language == 'e':
         alpha = english_letters
     else:
@@ -54,13 +53,19 @@ def convert(symbol, direction, language, shift):
             upper_case = 0
 
         if direction == 1:
-            x = alpha.index(symbol.lower())
-            y = (x + shift) % (len(alpha))
+            decr_index = alpha.index(symbol.lower())
+            encr_index = (decr_index + shift) % (len(alpha))
             if upper_case == 0:
-                return alpha[y]
+                return alpha[encr_index]
             else:
-                return  alpha[y].upper()
-
+                return alpha[encr_index].upper()
+        elif direction == 2:
+            encr_index = alpha.index(symbol.lower())
+            decr_index = (encr_index - shift) % (len(alpha))
+            if upper_case == 0:
+                return alpha[decr_index]
+            else:
+                return alpha[decr_index].upper()
     else:
         return symbol
 
@@ -73,10 +78,7 @@ sh = set_shift()
 # Start the program
 print('Enter the text:')
 in_text = input()
-# in_text = 'Умом Россию не понять'
 out_text = ''
 for sym in in_text:
     out_text += convert(sym, direct, lang, sh)
 print(out_text)
-
-
