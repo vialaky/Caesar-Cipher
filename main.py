@@ -22,9 +22,9 @@ def english_or_russian():
           'r - Russian')
     language = input()
     while True:
-        if language in ['e', 'E', 'у', 'У']:
+        if language.lower() == 'e':
             return 'e'
-        elif language in ['r', 'R', 'к', 'К']:
+        elif language.lower() == 'r':
             return 'r'
         else:
             print('Enter correct value:')
